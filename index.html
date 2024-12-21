@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f3f3f3;
+        }
+
+        .quiz-container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .green {
+            background-color: green;
+            color: white;
+margin-left:-100px;
+        }
+
+        .red {
+            background-color: red;
+            color: white;
+            position: absolute;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #message {
+            font-size: 18px;
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Apakah anda puas dengan gaji anda saat ini?</h1>
+        <button id="yesButton" class="btn green">Ya</button>
+        <button id="noButton" class="btn red">Tidak</button>
+        <p id="message" class="hidden"></p>
+    </div>
+
+    <script>
+        // Get the elements
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const message = document.getElementById('message');
+
+        // When the user clicks "Ya" (Green button)
+        yesButton.addEventListener('click', () => {
+            message.textContent = "Bagus, silahkan lanjut bekerja kembali";
+            message.classList.remove('hidden');
+            noButton.style.display = 'none';  // Hide the red button when the green button is clicked
+        });
+
+        // Make the red button move away from the cursor but stay within screen bounds
+        noButton.addEventListener('mouseover', () => {
+            const buttonWidth = noButton.offsetWidth;
+            const buttonHeight = noButton.offsetHeight;
+            const maxX = window.innerWidth - buttonWidth;
+            const maxY = window.innerHeight - buttonHeight;
+
+            const xPos = Math.random() * maxX;
+            const yPos = Math.random() * maxY;
+
+            noButton.style.left = `${xPos}px`;
+            noButton.style.top = `${yPos}px`;
+        });
+    </script>
+</body>
+</html>
